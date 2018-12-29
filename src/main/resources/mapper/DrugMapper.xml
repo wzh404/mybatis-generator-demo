@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangnengyongyao.drug.dao.DrugMapper">
+  <resultMap id="BaseResultMap" type="com.wangnengyongyao.drug.model.Drug">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="approval_number" jdbcType="VARCHAR" property="approvalNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="dosage_form" jdbcType="VARCHAR" property="dosageForm" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="manufacturer_address" jdbcType="VARCHAR" property="manufacturerAddress" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="issuing_date" jdbcType="VARCHAR" property="issuingDate" />
+    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="functions" jdbcType="VARCHAR" property="functions" />
+    <result column="otc" jdbcType="VARCHAR" property="otc" />
+    <result column="validity_day" jdbcType="VARCHAR" property="validityDay" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wangnengyongyao.drug.model.Drug">
+    <result column="book" jdbcType="LONGVARCHAR" property="book" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, approval_number, name, ename, dosage_form, specifications, manufacturer, manufacturer_address, 
+    classify, issuing_date, usage, functions, otc, validity_day, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    book
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from drug
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drug
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wangnengyongyao.drug.model.Drug">
+    insert into drug (id, approval_number, name, 
+      ename, dosage_form, specifications, 
+      manufacturer, manufacturer_address, classify, 
+      issuing_date, usage, functions, 
+      otc, validity_day, create_time, 
+      book)
+    values (#{id,jdbcType=INTEGER}, #{approvalNumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{dosageForm,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{manufacturerAddress,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR}, 
+      #{issuingDate,jdbcType=VARCHAR}, #{usage,jdbcType=VARCHAR}, #{functions,jdbcType=VARCHAR}, 
+      #{otc,jdbcType=VARCHAR}, #{validityDay,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{book,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangnengyongyao.drug.model.Drug">
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="approvalNumber != null">
+        approval_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="ename != null">
+        ename,
+      </if>
+      <if test="dosageForm != null">
+        dosage_form,
+      </if>
+      <if test="specifications != null">
+        specifications,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="manufacturerAddress != null">
+        manufacturer_address,
+      </if>
+      <if test="classify != null">
+        classify,
+      </if>
+      <if test="issuingDate != null">
+        issuing_date,
+      </if>
+      <if test="usage != null">
+        usage,
+      </if>
+      <if test="functions != null">
+        functions,
+      </if>
+      <if test="otc != null">
+        otc,
+      </if>
+      <if test="validityDay != null">
+        validity_day,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="book != null">
+        book,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="approvalNumber != null">
+        #{approvalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null">
+        #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerAddress != null">
+        #{manufacturerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="issuingDate != null">
+        #{issuingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="usage != null">
+        #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="functions != null">
+        #{functions,jdbcType=VARCHAR},
+      </if>
+      <if test="otc != null">
+        #{otc,jdbcType=VARCHAR},
+      </if>
+      <if test="validityDay != null">
+        #{validityDay,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="book != null">
+        #{book,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangnengyongyao.drug.model.Drug">
+    update drug
+    <set>
+      <if test="approvalNumber != null">
+        approval_number = #{approvalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null">
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null">
+        dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerAddress != null">
+        manufacturer_address = #{manufacturerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="issuingDate != null">
+        issuing_date = #{issuingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="usage != null">
+        usage = #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="functions != null">
+        functions = #{functions,jdbcType=VARCHAR},
+      </if>
+      <if test="otc != null">
+        otc = #{otc,jdbcType=VARCHAR},
+      </if>
+      <if test="validityDay != null">
+        validity_day = #{validityDay,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="book != null">
+        book = #{book,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wangnengyongyao.drug.model.Drug">
+    update drug
+    set approval_number = #{approvalNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      manufacturer_address = #{manufacturerAddress,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      issuing_date = #{issuingDate,jdbcType=VARCHAR},
+      usage = #{usage,jdbcType=VARCHAR},
+      functions = #{functions,jdbcType=VARCHAR},
+      otc = #{otc,jdbcType=VARCHAR},
+      validity_day = #{validityDay,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      book = #{book,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangnengyongyao.drug.model.Drug">
+    update drug
+    set approval_number = #{approvalNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      manufacturer_address = #{manufacturerAddress,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      issuing_date = #{issuingDate,jdbcType=VARCHAR},
+      usage = #{usage,jdbcType=VARCHAR},
+      functions = #{functions,jdbcType=VARCHAR},
+      otc = #{otc,jdbcType=VARCHAR},
+      validity_day = #{validityDay,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

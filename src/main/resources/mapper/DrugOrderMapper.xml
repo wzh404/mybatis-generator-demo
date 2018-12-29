@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangnengyongyao.drug.dao.DrugOrderMapper">
+  <resultMap id="BaseResultMap" type="com.wangnengyongyao.drug.model.DrugOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+    <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+    <result column="seller_store_id" jdbcType="INTEGER" property="sellerStoreId" />
+    <result column="seller_store_name" jdbcType="VARCHAR" property="sellerStoreName" />
+    <result column="payment" jdbcType="VARCHAR" property="payment" />
+    <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+    <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="reward_amount" jdbcType="DECIMAL" property="rewardAmount" />
+    <result column="discount_amount" jdbcType="DECIMAL" property="discountAmount" />
+    <result column="expected_amount" jdbcType="DECIMAL" property="expectedAmount" />
+    <result column="service_charge" jdbcType="DECIMAL" property="serviceCharge" />
+    <result column="freight" jdbcType="DECIMAL" property="freight" />
+    <result column="shipping_way" jdbcType="VARCHAR" property="shippingWay" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="shipping_time" jdbcType="TIMESTAMP" property="shippingTime" />
+    <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="logistics_status" jdbcType="INTEGER" property="logisticsStatus" />
+    <result column="shipping_company" jdbcType="VARCHAR" property="shippingCompany" />
+    <result column="shipping_id" jdbcType="VARCHAR" property="shippingId" />
+    <result column="seller_num" jdbcType="INTEGER" property="sellerNum" />
+    <result column="collection_store" jdbcType="VARCHAR" property="collectionStore" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, user_name, seller_id, seller_name, seller_store_id, seller_store_name, 
+    payment, pay_amount, order_amount, reward_amount, discount_amount, expected_amount, 
+    service_charge, freight, shipping_way, pay_time, shipping_time, sign_time, create_time, 
+    confirm_time, order_status, logistics_status, shipping_company, shipping_id, seller_num, 
+    collection_store, contacts
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from drug_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wangnengyongyao.drug.model.DrugOrder">
+    insert into drug_order (id, user_id, user_name, 
+      seller_id, seller_name, seller_store_id, 
+      seller_store_name, payment, pay_amount, 
+      order_amount, reward_amount, discount_amount, 
+      expected_amount, service_charge, freight, 
+      shipping_way, pay_time, shipping_time, 
+      sign_time, create_time, confirm_time, 
+      order_status, logistics_status, shipping_company, 
+      shipping_id, seller_num, collection_store, 
+      contacts)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{sellerId,jdbcType=INTEGER}, #{sellerName,jdbcType=VARCHAR}, #{sellerStoreId,jdbcType=INTEGER}, 
+      #{sellerStoreName,jdbcType=VARCHAR}, #{payment,jdbcType=VARCHAR}, #{payAmount,jdbcType=DECIMAL}, 
+      #{orderAmount,jdbcType=DECIMAL}, #{rewardAmount,jdbcType=DECIMAL}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{expectedAmount,jdbcType=DECIMAL}, #{serviceCharge,jdbcType=DECIMAL}, #{freight,jdbcType=DECIMAL}, 
+      #{shippingWay,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{shippingTime,jdbcType=TIMESTAMP}, 
+      #{signTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{orderStatus,jdbcType=INTEGER}, #{logisticsStatus,jdbcType=INTEGER}, #{shippingCompany,jdbcType=VARCHAR}, 
+      #{shippingId,jdbcType=VARCHAR}, #{sellerNum,jdbcType=INTEGER}, #{collectionStore,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangnengyongyao.drug.model.DrugOrder">
+    insert into drug_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="sellerName != null">
+        seller_name,
+      </if>
+      <if test="sellerStoreId != null">
+        seller_store_id,
+      </if>
+      <if test="sellerStoreName != null">
+        seller_store_name,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="payAmount != null">
+        pay_amount,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="rewardAmount != null">
+        reward_amount,
+      </if>
+      <if test="discountAmount != null">
+        discount_amount,
+      </if>
+      <if test="expectedAmount != null">
+        expected_amount,
+      </if>
+      <if test="serviceCharge != null">
+        service_charge,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="shippingWay != null">
+        shipping_way,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="shippingTime != null">
+        shipping_time,
+      </if>
+      <if test="signTime != null">
+        sign_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="logisticsStatus != null">
+        logistics_status,
+      </if>
+      <if test="shippingCompany != null">
+        shipping_company,
+      </if>
+      <if test="shippingId != null">
+        shipping_id,
+      </if>
+      <if test="sellerNum != null">
+        seller_num,
+      </if>
+      <if test="collectionStore != null">
+        collection_store,
+      </if>
+      <if test="contacts != null">
+        contacts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerName != null">
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreId != null">
+        #{sellerStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerStoreName != null">
+        #{sellerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rewardAmount != null">
+        #{rewardAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null">
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expectedAmount != null">
+        #{expectedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingWay != null">
+        #{shippingWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingTime != null">
+        #{shippingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsStatus != null">
+        #{logisticsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCompany != null">
+        #{shippingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingId != null">
+        #{shippingId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerNum != null">
+        #{sellerNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectionStore != null">
+        #{collectionStore,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangnengyongyao.drug.model.DrugOrder">
+    update drug_order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerName != null">
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreId != null">
+        seller_store_id = #{sellerStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerStoreName != null">
+        seller_store_name = #{sellerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null">
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rewardAmount != null">
+        reward_amount = #{rewardAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null">
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expectedAmount != null">
+        expected_amount = #{expectedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingWay != null">
+        shipping_way = #{shippingWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingTime != null">
+        shipping_time = #{shippingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signTime != null">
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsStatus != null">
+        logistics_status = #{logisticsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCompany != null">
+        shipping_company = #{shippingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingId != null">
+        shipping_id = #{shippingId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerNum != null">
+        seller_num = #{sellerNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectionStore != null">
+        collection_store = #{collectionStore,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangnengyongyao.drug.model.DrugOrder">
+    update drug_order
+    set user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      seller_store_id = #{sellerStoreId,jdbcType=INTEGER},
+      seller_store_name = #{sellerStoreName,jdbcType=VARCHAR},
+      payment = #{payment,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      reward_amount = #{rewardAmount,jdbcType=DECIMAL},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      expected_amount = #{expectedAmount,jdbcType=DECIMAL},
+      service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      freight = #{freight,jdbcType=DECIMAL},
+      shipping_way = #{shippingWay,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      shipping_time = #{shippingTime,jdbcType=TIMESTAMP},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      logistics_status = #{logisticsStatus,jdbcType=INTEGER},
+      shipping_company = #{shippingCompany,jdbcType=VARCHAR},
+      shipping_id = #{shippingId,jdbcType=VARCHAR},
+      seller_num = #{sellerNum,jdbcType=INTEGER},
+      collection_store = #{collectionStore,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
